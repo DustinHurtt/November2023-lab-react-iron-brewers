@@ -16,9 +16,10 @@ function RandomBeersPage() {
 
   useEffect(() => {
     
-    axios.get(API_URL + '/random')
+    axios.get(API_URL)
       .then((response) => {
-        setRandomBeer(response.data)
+        let randomIndex = Math.floor(Math.random() * response.data.length)
+        setRandomBeer(response.data[randomIndex])
       })
       .catch((err) => {
         console.log(err)
