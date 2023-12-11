@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 
 import { API_URL } from "../services/API_URL";
 
 import axios from "axios";
+
 
 
 
@@ -15,6 +16,17 @@ function BeerDetailsPage() {
 
   // React Router hook for navigation. We use it for the back button. You can leave this as it is.
   const navigate = useNavigate();
+
+  const deleteBeer = () => {
+    axios.delete(`${API_URL}/${beerId}`)
+      .then((response) => {
+        console.log(response)
+        navigate("/beers")
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
 
   
 
@@ -63,6 +75,15 @@ function BeerDetailsPage() {
           >
             Back
           </button>
+          <div className="detail-buttons">
+
+            <Link to={`/edit/${beer.id}`}>
+              <button>Edit Beer</button>
+            </Link>
+
+            <button onClick={deleteBeer}>Delete Beer</button>
+
+          </div>
         </>
       )}
     </div>

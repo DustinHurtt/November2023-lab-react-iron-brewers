@@ -43,7 +43,8 @@ function AllBeersPage() {
           filtered.map((beer, i) => {
             return (
               <div key={i}>
-                <Link to={"/beers/" + beer._id}>
+                <Link to={"/beers/" + beer.id}>
+                {/* <Link to={"/beers/" + beer._id}> */}
                   <div className="card m-2 p-2 text-center" style={{ width: "24rem", height: "18rem" }}>
                     <div className="card-body">
                       <img
